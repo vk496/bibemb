@@ -55,4 +55,6 @@ This project aims to embed a offline version of each bibliography entry inside t
 
 Make sure you to pass the `-shell-escape` flag to your LaTeX build or bibemb will not be executed during the build of your document.
 
+3. Add `url` tag for each reference you want to embed.
+
 Check a example [HERE](https://raw.githubusercontent.com/vk496/bibemb/master/report.pdf)
