@@ -1,0 +1,40 @@
+\documentclass{article}
+ 
+\usepackage{lipsum}  
+\usepackage{biblatex} 
+
+\usepackage{attachfile2}
+
+\addbibresource{biblio.bib}
+
+
+% To execute this command, must pass "-shell-escape" to the latex build command
+\immediate\write18{python bibemb.py biblio.bib}
+
+\DeclareSourcemap{
+  \maps[datatype=bibtex]{
+    \map{
+      \step[
+          fieldset=addendum,
+          fieldvalue=\IfFileExists{bib_external_resources/\unexpanded{\thefield{entrykey}}.pdf}
+                        {\attachfile{bib_external_resources/\unexpanded{\thefield{entrykey}}.pdf}}
+                        {\IfFileExists{bib_external_resources/\unexpanded{\thefield{entrykey}}.html}
+                            {\attachfile{bib_external_resources/\unexpanded{\thefield{entrykey}}.html}}
+                            {}
+                        }
+      ]
+    }
+  }
+}
+
+
+
+\begin{document}
+ 
+\section{Bibemb example}
+\lipsum[2-4]
+\nocite{*}
+
+\printbibliography
+
+\end{document}
